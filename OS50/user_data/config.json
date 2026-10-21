@@ -1,6 +1,6 @@
 {
   "bot_name": "OS50_RESEARCH_ONLY",
-  "initial_state": "stopped",
+  "initial_state": "running",
   "max_open_trades": 1,
   "stake_currency": "CAD",
   "stake_amount": 10,
