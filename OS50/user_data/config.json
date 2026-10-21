@@ -1,0 +1,35 @@
+{
+  "bot_name": "OS50_RESEARCH_ONLY",
+  "initial_state": "stopped",
+  "max_open_trades": 1,
+  "stake_currency": "CAD",
+  "stake_amount": 10,
+  "tradable_balance_ratio": 0.8,
+  "fiat_display_currency": "CAD",
+  "dry_run": true,
+  "dry_run_wallet": 50,
+  "trading_mode": "spot",
+  "cancel_open_orders_on_exit": false,
+  "exchange": {
+    "name": "kraken",
+    "key": "",
+    "secret": "",
+    "ccxt_config": {},
+    "ccxt_async_config": {},
+    "pair_whitelist": [
+      "BTC/CAD"
+    ],
+    "pair_blacklist": []
+  },
+  "pairlists": [
+    {
+      "method": "StaticPairList"
+    }
+  ],
+  "telegram": {
+    "enabled": false
+  },
+  "api_server": {
+    "enabled": false
+  }
+}
