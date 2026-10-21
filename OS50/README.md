@@ -11,7 +11,7 @@ This branch adds a separate, inspectable trading-engine starter for OS50. It **d
 - Upstream Freqtrade is GPL-3.0. This starter is a separate integration template, not a fork of its core.
 
 ## What is implemented
-1. A $50 CAD **dry-run only** Kraken spot configuration, one virtual position at a time. Bot is initially **stopped**, exchange API credentials are blank, and HTTP API is disabled.
+1. A $50 CAD **dry-run only** Kraken spot configuration, one virtual position at a time. Bot automatically begins **paper-only monitoring** when the Docker worker is started. Exchange API credentials are blank, `dry_run` is always true, and HTTP API is disabled.
 2. An example trend / momentum / breakout / volatility strategy (not validated or profitable).
 3. Pure-Python financial ledger: fees, slippage assumptions, realized profits and losses, virtual transfers of **existing** $1 net profits into five round-robin child divisions. These children **do not independently execute trades**.
 4. Automated unit tests for double counting, costs, allocation, loss recovery and spending controls.
