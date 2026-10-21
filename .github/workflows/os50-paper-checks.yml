@@ -1,0 +1,34 @@
+name: OS50 Paper Engine Checks
+on:
+  push:
+    branches: [os50-paper-engine]
+    paths:
+      - 'OS50/**'
+      - '.github/workflows/os50-paper-checks.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  ledger:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: OS50
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c # v4.2.2
+      - name: Confirm research-only config and syntax
+        run: |
+          python - <<'PY'
+          import ast, json
+          from pathlib import Path
+          cfg = json.loads(Path("user_data/config.json").read_text())
+          assert cfg["dry_run"] is True, "Real trades are forbidden"
+          assert cfg["trading_mode"] == "spot"
+          assert not cfg["exchange"]["key"] and not cfg["exchange"]["secret"]
+          assert cfg["api_server"]["enabled"] is False
+          for path in ["ledger.py", "user_data/strategies/OS50GuardedStrategy.py"]:
+              ast.parse(Path(path).read_text())
+          print("OS50 dry-run safety and strategy syntax PASS")
+          PY
+      - name: Unit test dollar accounting and child births
+        run: python -m unittest discover -s tests -v
